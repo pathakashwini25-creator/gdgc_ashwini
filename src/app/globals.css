@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — Matte Black + Off-White, no gradients, no colour casts
+------------------------------------------------------------------- */
+@theme {
+  --color-ink: #0a0a0a;
+  --color-ink-raised: #121214;
+  --color-ink-hover: #17171a;
+  --color-paper: #f5f5f7;
+  --color-mute: #97979d;
+
+  --shadow-soft: 0 8px 30px rgb(255 255 255 / 0.04);
+  --shadow-panel: 0 24px 70px rgb(0 0 0 / 0.55);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-albert), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #26262a;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #3a3a40;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  /* Structural hairline grid used behind the hero */
+  .grid-overlay {
+    background-image: url("/grid.svg");
+    background-size: 56px 56px;
+    background-position: center center;
+  }
+
+  /* Pointer-following spotlight for SpotlightCard */
+  .spotlight-glow {
+    background: radial-gradient(
+      340px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgb(255 255 255 / 0.11),
+      transparent 72%
+    );
+  }
+}
